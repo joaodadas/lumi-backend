@@ -1,0 +1,44 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Client {
+  id                 Int       @id @default(autoincrement())
+  clientNumber       String    @unique
+  installationNumber String // 👈 NOVO CAMPO
+  invoices           Invoice[] // Relação com as faturas
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  @@index([clientNumber])
+}
+
+model Invoice {
+  id                     Int      @id @default(autoincrement())
+  referenceMonth         String
+  energyConsumed         Int
+  energyConsumedValue    Float
+  energySCEEE            Int
+  energySCEEValue        Float
+  compensatedEnergy      Int
+  compensatedEnergyValue Float
+  publicLightingValue    Float
+  totalEnergyConsumption Int
+  totalValueWithoutGD    Float
+  gdSavings              Float
+  clientId               Int
+  client                 Client   @relation(fields: [clientId], references: [id])
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  @@unique([clientId, referenceMonth]) // ✅ Evita faturas duplicadas para o mesmo cliente e mês
+  @@index([clientId])
+  @@index([referenceMonth])
+}
