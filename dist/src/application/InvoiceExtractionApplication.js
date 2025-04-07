@@ -13,7 +13,7 @@ class InvoiceExtractionApplication {
     extractor = new PdfInvoiceExtractor_1.PdfInvoiceExtractor();
     invoiceService = new InvoiceService_1.InvoiceService();
     async extractAllFromFolder() {
-        const baseFolder = path_1.default.join(__dirname, '../../Faturas');
+        const baseFolder = path_1.default.resolve('public/Faturas');
         const results = [];
         const clientFolders = fs_1.default.readdirSync(baseFolder);
         for (const folder of clientFolders) {

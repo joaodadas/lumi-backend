@@ -88,9 +88,10 @@ class InvoiceController {
             // Aplica normalização no nome da pasta
             const folderName = this.normalize(`Instalação_${installationNumber}`);
             const fileName = `${installationNumber}-${numericMonth}-${year}.pdf`;
-            const basePath = path_1.default.join(__dirname, '../../Faturas');
+            const basePath = path_1.default.resolve('public/Faturas');
             const filePath = path_1.default.join(basePath, folderName, fileName);
-            console.log('📄 Procurando arquivo em:', filePath);
+            console.log('🧩 Caminho final resolvido:', filePath);
+            console.log('📁 Arquivos disponíveis:', fs_1.default.readdirSync(path_1.default.dirname(filePath)));
             if (!fs_1.default.existsSync(filePath)) {
                 res.status(404).json({ error: 'Arquivo não encontrado.' });
                 return;
