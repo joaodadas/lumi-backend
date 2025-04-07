@@ -9,6 +9,7 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static('public'));
 setupSwagger(app);
 app.use(routes);
 app.use(errorHandler);

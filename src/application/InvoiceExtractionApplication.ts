@@ -9,7 +9,7 @@ export class InvoiceExtractionApplication {
   private invoiceService = new InvoiceService();
 
   async extractAllFromFolder(): Promise<any[]> {
-    const baseFolder = path.join(__dirname, '../../Faturas');
+    const baseFolder = path.join(__dirname, '../../public/Faturas');
     const results: any[] = [];
 
     const clientFolders = fs.readdirSync(baseFolder);
