@@ -98,7 +98,7 @@ export class InvoiceController {
       // Aplica normalização no nome da pasta
       const folderName = this.normalize(`Instalação_${installationNumber}`);
       const fileName = `${installationNumber}-${numericMonth}-${year}.pdf`;
-      const basePath = path.join(__dirname, '../../public/Faturas');
+      const basePath = path.resolve('public/Faturas');
       const filePath = path.join(basePath, folderName, fileName);
 
       console.log('🧩 Caminho final resolvido:', filePath);
