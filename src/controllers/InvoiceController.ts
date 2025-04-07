@@ -101,7 +101,11 @@ export class InvoiceController {
       const basePath = path.join(__dirname, '../../public/Faturas');
       const filePath = path.join(basePath, folderName, fileName);
 
-      console.log('📄 Procurando arquivo em:', filePath);
+      console.log('🧩 Caminho final resolvido:', filePath);
+      console.log(
+        '📁 Arquivos disponíveis:',
+        fs.readdirSync(path.dirname(filePath))
+      );
 
       if (!fs.existsSync(filePath)) {
         res.status(404).json({ error: 'Arquivo não encontrado.' });
